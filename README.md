@@ -1,3 +1,4 @@
 # README
 
-Run these commands and the application
+1. `bundle install`
+2. `rails s`
