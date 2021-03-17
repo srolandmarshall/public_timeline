@@ -1,0 +1,18 @@
+<div class="tweet">
+  <div class="container">
+    <div class="profileimage">
+      <img src="<%= tweet.user.profile_image_uri%>" />
+    </div>
+    <div class="tweetbody">
+      <p><%= tweet.user.name %></p>
+      <a href="<%=tweet.user.uri%>">
+        <p>@<%= tweet.user.screen_name %></p>
+      </a>
+      <p><%= tweet.full_text %></p>
+      <p>
+        <%= time_ago_in_words(tweet.created_at) %> ago from
+        <%= tweet.source.html_safe %>
+      </p>
+    </div>
+  </div>
+</div>

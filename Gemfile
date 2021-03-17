@@ -53,3 +53,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "tweetstream", "~> 2.6"
+
+gem "pry", "~> 0.14.0"

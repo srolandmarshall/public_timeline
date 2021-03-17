@@ -1,4 +1,7 @@
 # README
 
-1. `bundle install`
-2. `rails s`
+1. Clone this repo
+2. Run `ruby -v` to make sure you have the correct version of Ruby for this application (2.5.8). If you don't, use your Ruby environment manager to grab `ruby-2.5.8`
+3. `bundle install`
+4. `bundle exec rails webpacker:install`
+5. `rails s`
