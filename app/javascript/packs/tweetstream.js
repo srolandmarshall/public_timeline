@@ -1,14 +1,27 @@
 const needle = require("needle");
+const proxy = "http://localhost:8080/";
+import * as timeago from "timeago.js";
 
 const streamURL =
-  "http://localhost:8080/https://api.twitter.com/2/tweets/sample/stream";
+  "https://api.twitter.com/2/tweets/sample/stream?tweet.fields=created_at,source&expansions=author_id&user.fields=url,profile_image_url,username,name";
+
+const fetchURL = proxy + streamURL;
 const token = process.env.BEARER_TOKEN;
 var tweetsData = [];
+var count = 1;
 
-console.log(`Bearer ${process.env.BEARER_TOKEN}`);
+function handleJSON(json) {
+  const { data, includes } = json;
+  const tweet = data;
+  const user = includes.users[0];
+  if (count <= 20) {
+    $("#tweets").append(createTweet(tweet, user));
+    count += 1;
+  }
+}
 
 function streamConnect(retryAttempt) {
-  const stream = needle.get(streamURL, {
+  const stream = needle.get(fetchURL, {
     headers: {
       "User-Agent": "v2SampleStreamJS",
       Authorization: `Bearer ${token}`,
@@ -16,11 +29,14 @@ function streamConnect(retryAttempt) {
     timeout: 20000,
   });
 
+  var count = 0;
   stream
     .on("data", (data) => {
       try {
         const json = JSON.parse(data);
-        tweetsData.push(json);
+        count += 1;
+        console.log(json);
+        handleJSON(json);
         // A successful connection resets retry count.
         retryAttempt = 0;
       } catch (e) {
@@ -58,11 +74,27 @@ function streamConnect(retryAttempt) {
 
 (async () => {
   streamConnect(0);
+  console.log(tweetsData);
 })();
 
-function createTweet() {
+function createTweetBody(tweet, user) {
+  return `<p>
+        <strong>${user.name}</strong>
+        <a href="${user.url}%>">@${user.username}</a>
+      </p>
+
+      <p>${tweet.text}</p>
+      <p>
+       ${timeago.format(tweet.created_at)} from
+        ${tweet.source}
+      </p>
+      `;
+}
+
+function createTweet(tweet, user) {
   const tweetDiv = document.createElement("div");
   tweetDiv.classList.add("tweet");
+  $(tweetDiv).attr("id", tweet.id);
   const tweetContainer = document.createElement("div");
   tweetContainer.classList.add("container");
   tweetDiv.appendChild(tweetContainer);
@@ -71,30 +103,12 @@ function createTweet() {
   const tweetBody = document.createElement("div");
   tweetBody.classList.add("tweetbody");
   tweetContainer.appendChild(profileImage);
+  $(profileImage).append(`<img src=${user.profile_image_url}>`);
   tweetContainer.appendChild(tweetBody);
+  $(tweetBody).append(createTweetBody(tweet, user));
   return tweetDiv;
 }
 
-function tweetRange(start, num) {
-  return tweetsData.slice(start, num - 1);
-}
-
-function firstTwentyTweets() {
-  return tweetRange(0, 20);
-}
-
-const testTweet = {
-  user: {
-    name: "Sam Marshall",
-    uri: "http://twitter.com",
-    screenName: "dothefandango",
-  },
-  tweet: {
-    fullText:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam porta lacus quis tortor suscipit fermentum. Etiam euismod ut eros vel.",
-    createdAt: Date.now(),
-    source: `<a href="http://twitter.com/download/iphone" rel="nofollow">Twitter for iPhone</a>`,
-  },
-};
-
-console.log(firstTwentyTweets());
+$(function () {
+  timeago.render(document.querySelectorAll(".need_to_be_rendered"));
+});
