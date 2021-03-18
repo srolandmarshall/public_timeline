@@ -25,6 +25,10 @@ function handleJSON(json) {
   }
 }
 
+function handleError(error){
+  ${"#tweets"}.append(`<p>${error}</p>`)
+}
+
 function streamConnect(retryAttempt) {
   const stream = needle.get(fetchURL, {
     headers: {
@@ -49,11 +53,8 @@ function streamConnect(retryAttempt) {
         if (data.status === 401) {
           console.log(data);
           process.exit(1);
-        } else if (
-          data.detail ===
-          "This stream is currently at the maximum allowed connection limit."
-        ) {
-          console.log(data.detail);
+        } else if (data.status === 429) {
+          handleError(data.detail);
           process.exit(1);
         } else {
           // Keep alive signal received. Do nothing.

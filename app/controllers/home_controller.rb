@@ -13,7 +13,6 @@ class HomeController < ApplicationController
       @tweets << status
       client.stop unless @tweets.size < 20
     end
-    binding.pry
   end
 
   def js
