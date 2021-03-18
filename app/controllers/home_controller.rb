@@ -11,7 +11,7 @@ class HomeController < ApplicationController
     @tweets = []
     TweetStream::Client.new.sample do |status, client|
       @tweets << status
-      client.stop if @tweets.size >= 20
+      client.stop unless @tweets.size < 20
     end
     binding.pry
   end

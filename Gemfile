@@ -58,3 +58,7 @@ gem "tweetstream", "~> 2.6"
 gem "pry", "~> 0.14.0"
 
 gem "rack-cors", "~> 1.1"
+
+gem "rspec-rails", "~> 5.0"
+
+gem "rails-controller-testing", "~> 1.0"

@@ -2,11 +2,16 @@ const needle = require("needle");
 const proxy = "http://localhost:8080/";
 import * as timeago from "timeago.js";
 
+const request = require("request");
+
+const token = process.env.BEARER_TOKEN;
+
+console.log(token);
+
 const streamURL =
   "https://api.twitter.com/2/tweets/sample/stream?tweet.fields=created_at,source&expansions=author_id&user.fields=url,profile_image_url,username,name";
 
 const fetchURL = proxy + streamURL;
-const token = process.env.BEARER_TOKEN;
 var tweetsData = [];
 var count = 1;
 
