@@ -5,3 +5,7 @@
 3. `bundle install`
 4. `bundle exec rails webpacker:install`
 5. `rails s`
+
+## Set up proxy
+
+You will probably need to use a proxy for the JS page API implementation. You can follow instructions [here](git@github.com:srolandmarshall/cors-anywhere.git) for that.
