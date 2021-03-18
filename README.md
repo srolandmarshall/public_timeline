@@ -8,4 +8,4 @@
 
 ## Set up proxy
 
-You will probably need to use a proxy for the JS page API implementation. You can follow instructions (here)[git@github.com:srolandmarshall/cors-anywhere.git] for that.
+You will probably need to use a proxy for the JS page API implementation. You can follow instructions (here)[http://github.com/srolandmarshall/cors-anywhere] for that.
