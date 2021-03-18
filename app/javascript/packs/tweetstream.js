@@ -25,8 +25,8 @@ function handleJSON(json) {
   }
 }
 
-function handleError(error){
-  ${"#tweets"}.append(`<p>${error}</p>`)
+function handleError(error) {
+  $("#tweets").append(`<p>${error}</p>`);
 }
 
 function streamConnect(retryAttempt) {
