@@ -4,10 +4,11 @@
       <img src="<%= tweet.user.profile_image_uri%>" />
     </div>
     <div class="tweetbody">
-      <p><%= tweet.user.name %></p>
-      <a href="<%=tweet.user.uri%>">
-        <p>@<%= tweet.user.screen_name %></p>
-      </a>
+      <p>
+        <strong><%= tweet.user.name %></strong>
+        <a href="<%=tweet.user.uri%>">@<%= tweet.user.screen_name %> </a>
+      </p>
+
       <p><%= tweet.full_text %></p>
       <p>
         <%= time_ago_in_words(tweet.created_at) %> ago from

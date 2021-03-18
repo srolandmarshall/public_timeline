@@ -8,4 +8,5 @@ Rails
 
     root to: 'home#index'
     get '/test', to: 'home#test'
+    get '/via_js', to: 'home#js'
   end

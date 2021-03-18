@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+gem 'dotenv-rails', groups: [:development, :test]
 
 ruby '2.5.8'
 
@@ -55,3 +56,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "tweetstream", "~> 2.6"
 
 gem "pry", "~> 0.14.0"
+
+gem "rack-cors", "~> 1.1"

@@ -13,14 +13,13 @@
  *= require_tree .
  *= require_self
  */
-
 .container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
 }
 
 .tweet {
-  grid-column: span 8;
+  grid-column: span 10;
   border: 2px black solid;
   margin: 10px 0;
 }
@@ -28,6 +27,7 @@
 .profileimage {
   grid-column: span 1;
   margin: auto;
+  padding: 5px;
 }
 
 .tweetbody {

@@ -15,4 +15,8 @@ class HomeController < ApplicationController
     end
     binding.pry
   end
+
+  def js
+    @tweets = []
+  end
 end
