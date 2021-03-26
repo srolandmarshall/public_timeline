@@ -2,10 +2,11 @@
 
 ## Install Rails App
 
-1. Navigate to this folder in your terminal and `git clone git@github.com:srolandmarshall/public_timeline.git`
-2. Navigate to the rails app `cd public_timeline`
-3. In terminal, `ruby -v` to confirm you are using `ruby-2.5.8`. `rvm` and `rbenv` should detect from either `.ruby-version` or the `Gemfile`.
-4. In terminal, `bundle install` (if you don't have Bundle configured, simply `gem install bundler`)
+1. Open terminal, navigate to the folder you wish to install the application in
+2. In terminal, `git clone git@github.com:srolandmarshall/public_timeline.git`
+3. Navigate to the rails app `cd public_timeline`
+4. In terminal, `ruby -v` to confirm you are using `ruby-2.5.8`. `rvm` and `rbenv` should detect from either `.ruby-version` or the `Gemfile`.
+5. In terminal, `bundle install` (if you don't have Bundle configured, simply `gem install bundler`)
 
 - _NOTE_: I did not use `rvm` for this project, so creating a gemset as specified in the application was out of scope without completely reconfiguring my ruby environment. However, `bundle` should work efficiently enough with any environment.
 
