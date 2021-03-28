@@ -39,7 +39,7 @@ function displayLoading() {
 }
 
 function handleError(error) {
-	$("#tweets").html(`<p>${error}</p>`);
+	$("#tweets").html(`<h3>${error}</h3>`);
 }
 
 function streamConnect(retryAttempt) {
@@ -75,9 +75,10 @@ function streamConnect(retryAttempt) {
 				}
 			}
 		})
-		.on("err", (error) => {
+		.on("done", (error) => {
 			if (error.code !== "ECONNRESET") {
-				console.log(error.code);
+				console.log(error.message);
+				handleError(error.code);
 				process.exit(1);
 			} else {
 				// This reconnection logic will attempt to reconnect when a disconnection is detected.
